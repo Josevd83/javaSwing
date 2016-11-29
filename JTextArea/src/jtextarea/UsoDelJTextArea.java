@@ -7,6 +7,7 @@ package jtextarea;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 
 /**
  *
@@ -19,6 +20,11 @@ public class UsoDelJTextArea extends javax.swing.JFrame {
      */
     public UsoDelJTextArea() {
         initComponents();
+        GraphicsEnvironment gpe = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        Font[] ft = gpe.getAllFonts();
+        for(Font f: ft){
+            jComboBox1.addItem(f.getFontName());
+        }
     }
 
     /**
@@ -41,6 +47,7 @@ public class UsoDelJTextArea extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +108,12 @@ public class UsoDelJTextArea extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,11 +137,13 @@ public class UsoDelJTextArea extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(210, 210, 210)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton5)
                                 .addGap(40, 40, 40)
-                                .addComponent(jButton6)))))
+                                .addComponent(jButton6))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)))))
                 .addContainerGap(83, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,8 +151,10 @@ public class UsoDelJTextArea extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton7)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -186,6 +203,11 @@ public class UsoDelJTextArea extends javax.swing.JFrame {
         jTextArea1.setFont(ftn);
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        jTextArea1.setFont(new Font(jComboBox1.getSelectedItem().toString(),Font.PLAIN, 12));
+        jComboBox1.setFont(new Font(jComboBox1.getSelectedItem().toString(),Font.PLAIN, 12));
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -229,6 +251,7 @@ public class UsoDelJTextArea extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
